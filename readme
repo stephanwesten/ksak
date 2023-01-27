@@ -1,0 +1,20 @@
+Kubernetes Swiss Army Knife
+
+
+
+Build instructions
+------------------
+
+cd src
+env GOOS=linux go build  -o ../bin
+
+cd ..
+docker build --tag ksak .
+docker run --tag ksak
+
+
+----
+Switch to Kind cluster
+
+kubectl config get-contexts
+kubectl config set current-context kind-kind
