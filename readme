@@ -1,10 +1,11 @@
 Kubernetes Swiss Army Knife
 
+Go application that prints the current time and a random string.
+Suited for experiments on Kind.
 
 
 Build instructions
 ------------------
-
 cd src
 env GOOS=linux go build  -o ../bin
 
@@ -13,8 +14,18 @@ docker build --tag ksak .
 docker run --tag ksak
 
 
-----
 Switch to Kind cluster
-
+----------------------
 kubectl config get-contexts
 kubectl config set current-context kind-kind
+
+
+Deploy in Kind cluster
+----------------------
+kind load docker-image ksak
+
+verify: docker exec -it kind-control-plane crictl images
+
+kubectl apply -f ksak_pod_manifest.yaml -n default
+
+kubectl get pods -n default
