@@ -6,11 +6,27 @@ import (
 	"time"
 )
 
-// print every second the current time and a random character
+const charset = "abcdefghijklmnopqrstuvwxyz" +
+	"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+var seededRand *rand.Rand = rand.New(rand.NewSource(time.Now().UnixNano()))
+
+func stringWithCharset(length int, charset string) string {
+	b := make([]byte, length)
+	for i := range b {
+		b[i] = charset[seededRand.Intn(len(charset))]
+	}
+	return string(b)
+}
+
+func randomString(length int) string {
+	return stringWithCharset(length, charset)
+}
+
+// print every second the current time and a random string
 func main() {
 	for {
-		fmt.Print(time.Now())
-		fmt.Println(" " + string(rand.Intn(32)+32))
+		fmt.Printf("%s - %s\n", time.Now(), randomString(10))
 		time.Sleep(time.Second)
 	}
 }

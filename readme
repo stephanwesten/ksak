@@ -11,6 +11,8 @@ env GOOS=linux go build  -o ../bin
 
 cd ..
 docker build --tag ksak .
+
+verify:
 docker run --tag ksak
 
 
@@ -29,3 +31,6 @@ verify: docker exec -it kind-control-plane crictl images
 kubectl apply -f ksak_pod_manifest.yaml -n default
 
 kubectl get pods -n default
+
+Reload requires to delete the pod due to latest tag:
+k delete pod ksak -n default
