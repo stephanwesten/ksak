@@ -8,6 +8,6 @@ spec:
   containers:
   - name: ksak
     image: docker.io/library/ksak
-    imagePullPolicy: IfNotPresent
+    imagePullPolicy: IfNotPresent # according to Kind documentation we need to specify this because of :latest
 
 

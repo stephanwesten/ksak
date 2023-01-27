@@ -1,7 +1,7 @@
 Kubernetes Swiss Army Knife
 
 Go application that prints the current time and a random string.
-Suited for experiments on Kind.
+Suited for experiments in Kind.
 
 
 Build instructions
